@@ -3,17 +3,12 @@
 #include <string.h>
 
 #include "accounts.h"
-
-/*
-typedef struct account_list {
-    
-} AccountList;
-*/
+#include "lista_ligada.h"
 
 typedef struct client {
     unsigned long num_code;
     long global_balance;
-    Account *accounts;
+    Lista *accounts;
     char *name;
     char *address;
 } Client;

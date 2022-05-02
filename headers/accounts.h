@@ -16,5 +16,5 @@ typedef enum type {
 typedef struct account {
     unsigned long code;
     long balance;
-    Type kind; 
+    Type t;
 } Account;
