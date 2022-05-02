@@ -4,9 +4,11 @@
 
 #include "accounts.h"
 
+/*
 typedef struct account_list {
     
 } AccountList;
+*/
 
 typedef struct client {
     unsigned long num_code;
