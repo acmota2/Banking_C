@@ -32,7 +32,7 @@ bool remove(Lista *l, void *elem, bool (*equal)(void*, void*)) {
 }
 
 void destroy_lista(Lista *l, void (*destroyer)(void*)) {
-    for(struct nodo **ptr = &l->first; ptr != NULL; *ptr = l->first) {
+    for(struct nodo **ptr = &l->first; ptr != NULL; ptr = &l->first) {
         // *ptr aqui é sempre o l->first, pelo que l->first->next == (*ptr)->next e so on
         if(destroyer != NULL) { // not sure se precisa disto
             destroyer((*ptr)->content);
