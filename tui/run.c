@@ -9,7 +9,7 @@
 void main_menu(int**bd) {
     char opt[1024];
     do {
-        puts("\e[H\e[2J\e[3JWelcome to Banksie!\nChoose an option:\n");
+        puts("\e[H\e[2J\e[3JWelcome to Banksie!\n\nChoose an option:");
         printf("1) List all clients\n2) Check a specific client\n3) Edit a specific client\n4) Remove a specific client\n5) Create a new client\nQ) Quit\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);

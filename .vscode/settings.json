@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "clients.h": "c"
+        "*.frag": "cpp",
+        "*.tesc": "cpp",
+        "*.tese": "cpp",
+        "*.vert": "cpp",
+        "clients.h": "c",
+        "stdio.h": "c"
     }
 }
