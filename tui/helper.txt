@@ -1,9 +1,0 @@
-// int main(void){
-//     int val;
-//     printf("\e[H\e[2J\e[3J");
-//     printf("Write input:\n");
-//     scanf("%d",&val);
-//     printf("\e[H\e[2J\e[3J");
-//     printf("Result:\n");
-//     printf("%d\n",val);
-// }
