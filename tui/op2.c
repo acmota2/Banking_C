@@ -4,6 +4,15 @@
 #include "utils_tui.h"
 #include "funcs.h"
 
+void op2_op1(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JInformation\n------------\n\nName: Any Name\nAddress: 22 Fake Street\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
 void op2_menu(char*name,int**bd){
     char opt[1024];
     do {
@@ -12,7 +21,7 @@ void op2_menu(char*name,int**bd){
         fgets(opt,1024,stdin);
         switch (*opt){
             case '1':
-                /* code */
+                op2_op1();
                 break;
             case '2':
                 /* code */
