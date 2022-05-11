@@ -4,15 +4,27 @@
 #include "utils_tui.h"
 #include "funcs.h"
 
+void op2_op1(){
+    char opt[1024];
+    do{
+        printf("\e[H\e[2J\e[3JInformation\n----------\nName: Asdrubal\nAddress: Fake Street\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+
+
 void op2_menu(char*name,int**bd){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",name);
         printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Check global position\n6) Edit a specific account\n7) Remove a specific account\n8) Create a new account\nQ) Go Back\n> ");
         fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
         switch (*opt){
             case '1':
-                /* code */
+                op2_op1();
                 break;
             case '2':
                 /* code */
