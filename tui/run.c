@@ -3,6 +3,9 @@
 #include <string.h>
 #include "op1.h"
 #include "op2.h"
+#include "op3.h"
+#include "op4.h"
+#include "op5.h"
 #include "utils_tui.h"
 #include "funcs.h"
 
@@ -21,13 +24,13 @@ void main_menu(int**bd) {
                 op2(bd);
                 break;
             case '3':
-                /* code */
+                op3(bd);
                 break;
             case '4':
-                /* code */
+                op4(bd);
                 break;
             case '5':
-                /* code */
+                op5(bd);
                 break;
             default:
                 break;

@@ -13,6 +13,69 @@ void op2_op1(){
     } while(*opt!='Q' && *opt!='q');
 }
 
+void op2_op2(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP2\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op3(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP3\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op4(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP4\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op5(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP5\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op6(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP6\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op7(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP7\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
+void op2_op8(){
+    char opt[1024];
+    do {
+        printf("\e[H\e[2J\e[3JOP8\n\nQ) Go Back\n> ");
+        fgets(opt,1024,stdin);
+        newline_to_nullt(opt);
+    } while(*opt!='Q' && *opt!='q');
+}
+
 void op2_menu(char*name,int**bd){
     char opt[1024];
     do {
@@ -24,25 +87,25 @@ void op2_menu(char*name,int**bd){
                 op2_op1();
                 break;
             case '2':
-                /* code */
+                op2_op2();
                 break;
             case '3':
-                /* code */
+                op2_op3();
                 break;
             case '4':
-                /* code */
+                op2_op4();
                 break;
             case '5':
-                /* code */
+                op2_op5();
                 break;
             case '6':
-                /* code */
+                op2_op6();
                 break;
             case '7':
-                /* code */
+                op2_op7();
                 break;
             case '8':
-                /* code */
+                op2_op8();
                 break;
             default:
                 break;
@@ -51,7 +114,7 @@ void op2_menu(char*name,int**bd){
 }
 
 void op2(int**bd){
-    char name[1024] = {0};
+    char name[1024];
     printf("\e[H\e[2J\e[3JID of the client:\n");
     fgets(name,1024,stdin);
     newline_to_nullt(name);
