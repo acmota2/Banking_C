@@ -9,6 +9,6 @@ typedef enum movement_type {
 
 typedef struct movement {
     char date[sizeof("YYYY-MM-DD HH:MM:SS")];
-    MovementType type;
+    MovementType t;
     long ammount;
 } Movement;

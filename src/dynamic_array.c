@@ -1,12 +1,5 @@
 #include "dynamic_array.h"
 
-// para uso em casos que campos empty interessam
-DynamicArray* create_dynamic_indextable(size_t content_size, size_t n) {
-    DynamicArray *r = calloc(1, sizeof(DynamicArray));
-    r->array = calloc(n, content_size);
-    return r;
-}
-
 DynamicArray* create_dynamic_array(size_t content_size, size_t n) {
     DynamicArray *r = calloc(1, sizeof(DynamicArray));
     r->array = malloc(content_size * n);

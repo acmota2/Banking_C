@@ -52,9 +52,3 @@ Nodo *goto_nodo(Lista *l, size_t i) {
     for(; (i--) > 0; n = n->next);
     return n;
 }
-
-/*
-void insert_ord() {
-
-}
-*/

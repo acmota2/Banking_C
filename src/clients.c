@@ -12,7 +12,7 @@ DynamicArray *clients_by_location(DynamicArray *clients) {
     
     for(size_t i = 0; i < clients->length; ++i) {
         Client *current = index_type(Client *, clients, i);
-        if(current->name == '\0') {
+        if(current->name != '\0') {
             push(location, current);
         }
     }
