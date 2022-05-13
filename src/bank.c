@@ -1,5 +1,9 @@
-#include "clients.h"
-#include "dynamic_array.h"
+#include "bank.h"
+
+/*
+DISCLAIMER: o bank é um DynamicArray de clientes que à partida estará na main, pelo
+que não é necessário aparecer aqui numa struct ou assim, sendo gerido pela main
+*/
 
 static int location_alphabetical(const void* ptr1, const void* ptr2) {
     Client client1 = *(Client *) ptr1;
@@ -8,7 +12,7 @@ static int location_alphabetical(const void* ptr1, const void* ptr2) {
 }
 
 DynamicArray *clients_by_location(DynamicArray *clients) {
-    DynamicArray *location = create_dynamic_indextable(sizeof(Client), 10);
+    DynamicArray *location = create_dynamic_array(sizeof(Client), 10);
     
     for(size_t i = 0; i < clients->length; ++i) {
         Client *current = index_type(Client *, clients, i);
@@ -22,7 +26,7 @@ DynamicArray *clients_by_location(DynamicArray *clients) {
 }
 
 DynamicArray *clients_with_negative_balance(DynamicArray *clients) {
-    DynamicArray *balance = create_dynamic_indextable(sizeof(Client), 10);
+    DynamicArray *balance = create_dynamic_array(sizeof(Client), 10);
     
     for(size_t i = 0; i < clients->length; ++i) {
         Client *current = index_type(Client *, clients, i);
