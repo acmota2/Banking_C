@@ -36,11 +36,11 @@ inline void *pop(DynamicArray *a) {
 inline void sort_by(DynamicArray *a, int (*compare)(void const*, void const*)) {
     qsort(a->array, a->length, a->stride, compare); // not standard, ver se pode ser assim
 }
-
+/*
 void erase_position(DynamicArray *a, size_t index) {
     memset(a->array + (index * a->stride), 0, a->stride);
 }
-
+*/
 void destroy_dynamic_array(DynamicArray *a, void (*destroyer)(void*)) {
     if(destroyer != NULL) {
         for(size_t i = 0; i < a->length; ++i) {
