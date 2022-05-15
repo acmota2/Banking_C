@@ -1,6 +1,6 @@
-#ifndef OP4
-#define OP4
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "utils_tui.h"
 
-void op4(int**bd);
-
-#endif
+void op4();

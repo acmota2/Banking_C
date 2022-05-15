@@ -1,13 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "utils_tui.h"
-#include "funcs.h"
+#include "op4.h"
 
-void op4(int**bd){
+void op4(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP4\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP4\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');

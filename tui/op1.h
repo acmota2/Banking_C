@@ -1,6 +1,7 @@
-#ifndef OP1
-#define OP1
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "utils_tui.h"
 
-void op1 (int**bd);
+void op1 ();
 
-#endif

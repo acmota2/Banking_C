@@ -1,13 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "utils_tui.h"
-#include "funcs.h"
+#include "op2.h"
 
 void op2_op1(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JInformation\n------------\n\nName: Any Name\nAddress: 22 Fake Street\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JInformation\n------------\n\nName: Any Name\nAddress: 22 Fake Street\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -16,7 +12,7 @@ void op2_op1(){
 void op2_op2(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP2\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP2\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -25,7 +21,7 @@ void op2_op2(){
 void op2_op3(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP3\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP3\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -34,7 +30,7 @@ void op2_op3(){
 void op2_op4(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP4\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP4\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -43,7 +39,7 @@ void op2_op4(){
 void op2_op5(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP5\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP5\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -52,7 +48,7 @@ void op2_op5(){
 void op2_op6(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP6\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP6\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -61,7 +57,7 @@ void op2_op6(){
 void op2_op7(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP7\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP7\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -70,17 +66,17 @@ void op2_op7(){
 void op2_op8(){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP8\n\nQ) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JOP8\n\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2_menu(char*name,int**bd){
+void op2_menu(char*name){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",name);
-        printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Check global position\n6) Edit a specific account\n7) Remove a specific account\n8) Create a new account\nQ) Go Back\n> ");
+        printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Check global position\n6) Edit a specific account\n7) Remove a specific account\n8) Create a new account\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         switch (*opt){
             case '1':
@@ -113,10 +109,14 @@ void op2_menu(char*name,int**bd){
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2(int**bd){
+/*
+    Nesta ação, pretende-se que o utilizador escreva o id do cliente e que devolva a informação e uma lista de ações
+    Neste momento, basta escrever um nome e devolve esse nome. No futuro, irá-se verificar a existência desse ID.
+*/
+void op2(){
     char name[1024];
     printf("\e[H\e[2J\e[3JID of the client:\n");
     fgets(name,1024,stdin);
     newline_to_nullt(name);
-    op2_menu(name,bd);
+    op2_menu(name);
 }

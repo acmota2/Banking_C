@@ -1,7 +1,7 @@
-#ifndef UTILS_TUI
-#define UTILS_TUI
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void newline_to_nullt (char * sub);
 
-#endif
 

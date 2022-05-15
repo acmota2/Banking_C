@@ -1,6 +1,6 @@
-#ifndef OP3
-#define OP3
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "utils_tui.h"
 
-void op3(int**bd);
-
-#endif
+void op3();

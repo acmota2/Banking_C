@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "utils_tui.h"
-#include "funcs.h"
+#include "op5.h"
 
 
 void create_user(){
@@ -19,12 +15,12 @@ void create_user(){
     newline_to_nullt(address);
     
     do {
-        printf("\e[H\e[2J\e[3JName:%s\nAddress:%s\n\nQ) Go Back\n> ",name,address);
+        printf("\e[H\e[2J\e[3JName:%s\nAddress:%s\n\nq) Go Back\n> ",name,address);
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op5(int**bd){
+void op5(){
     create_user();
 }
