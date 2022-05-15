@@ -1,8 +1,8 @@
 #include "bank.h"
 
 /*
-DISCLAIMER: o bank é um DynamicArray de clientes que à partida estará na main, pelo
-que não é necessário aparecer aqui numa struct ou assim, sendo gerido pela main
+DISCLAIMER: o bank é um DynamicArray de clientes que estará na main, pelo
+que não é necessário aparecer aqui numa struct, sendo gerido pela main
 */
 
 static int location_alphabetical(const void* ptr1, const void* ptr2) {
@@ -20,7 +20,6 @@ DynamicArray *clients_by_location(DynamicArray *clients) {
             push(location, current);
         }
     }
-    
     sort_by(location, location_alphabetical);
     return location;
 }
@@ -34,7 +33,6 @@ DynamicArray *clients_with_negative_balance(DynamicArray *clients) {
             push(balance, current);
         }
     }
-
     return balance;
 }
 

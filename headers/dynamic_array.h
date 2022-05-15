@@ -18,5 +18,5 @@ inline void* access(DynamicArray *a, size_t i);
 inline void* pop(DynamicArray *a);
 bool push(DynamicArray *a, void const* elem);
 inline void sort_by(DynamicArray *a, int (*compare)(void const*, void const*));
-// void erase_position(DynamicArray *a, size_t index);
 void destroy_dynamic_array(DynamicArray *a, void (*destroyer)(void*));
+// void erase_position(DynamicArray *a, size_t index);

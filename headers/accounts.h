@@ -5,11 +5,6 @@
 
 #include "dynamic_array.h"
 #include "movements.h"
-/*
-ABSTRACT:
-
-Como se pretende completa edição das contas do banco, usar-se-á uma lista ligada para estas
-*/
 
 typedef enum type {
     DEMAND, // prazo

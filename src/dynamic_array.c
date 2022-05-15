@@ -1,12 +1,15 @@
 #include "dynamic_array.h"
 
 DynamicArray* create_dynamic_array(size_t content_size, size_t n) {
-    DynamicArray *r = calloc(1, sizeof(DynamicArray));
+    DynamicArray *r = malloc(sizeof(DynamicArray));
+    r->capacity = n;
+    r->length = 0;
+    r->stride = content_size;
     r->array = malloc(content_size * n);
     return r;
 }
 
-inline void* access(DynamicArray *a, size_t i) {
+void* access(DynamicArray *a, size_t i) {
     return a->array + (i * a->stride);
 }
 
@@ -19,22 +22,24 @@ bool push(DynamicArray *a, void const* elem) {
         }
     }
     memcpy(
-        a->array + (++a->length * a->stride),
+        a->array + (a->length * a->stride),
         elem,
         a->stride
     );
+    ++a->length;
     return true;
 }
 
-inline void *pop(DynamicArray *a) {
+void *pop(DynamicArray *a) {
     if(a->length > 0) {
         return a->array + (a->length-- * a->stride);
     }
     return NULL;
 }
 
-inline void sort_by(DynamicArray *a, int (*compare)(void const*, void const*)) {
-    qsort(a->array, a->length, a->stride, compare); // not standard, ver se pode ser assim
+void sort_by(DynamicArray *a, int (*compare)(void const*, void const*)) {
+    // ver se pode ser assim
+    qsort(a->array, a->length, a->stride, compare);
 }
 /*
 void erase_position(DynamicArray *a, size_t index) {
@@ -50,3 +55,28 @@ void destroy_dynamic_array(DynamicArray *a, void (*destroyer)(void*)) {
     free(a->array);
     free(a);
 }
+
+// TESTING
+
+/*
+struct teste {
+    char *str;
+};
+
+void destroy_teste(void *v) {
+    struct teste *t = v;
+    free(t->str);
+}
+
+int main(int argc, char *argv[]) {
+    DynamicArray *strs = create_dynamic_array(sizeof(struct teste), argc - 1);
+
+    for(size_t i = 1; i < argc; ++i) {
+        puts(argv[i]);
+        push(strs, &(struct teste){ .str = strdup(argv[i]) });
+        puts(index_type(struct teste *, strs, i - 1)->str);
+    }
+
+    destroy_dynamic_array(strs, destroy_teste);
+}
+*/

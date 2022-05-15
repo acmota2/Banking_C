@@ -1,5 +1,10 @@
 #include "client.h"
 
+/*
+como só existem Client dentro dum array e este copia o conteúdo para si,
+para evitar alocações desnecessárias na heap estes são retornados na stack
+da função que chamar esta abaixo
+*/
 Client create_client(unsigned long num_code, char *name, char *address) {
     return (Client) {
         .num_code = num_code,

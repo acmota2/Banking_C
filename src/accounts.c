@@ -1,11 +1,20 @@
 #include "accounts.h"
 
+/*
+como só existem Account dentro dum array e este copia o conteúdo para si,
+para evitar alocações desnecessárias na heap estes são retornados na stack
+da função que chamar esta abaixo
+*/
 Account create_account(unsigned long code, Type t) {
     return (Account) {
         .code = code,
         .t = t,
         .movements = create_dynamic_array(sizeof(Movement), 10)
     };
+}
+
+bool account_exists(Account *a) {
+    return a->movements != NULL;
 }
 
 bool add_movement(Account *a ,Movement *m) {
