@@ -5,11 +5,11 @@ DISCLAIMER: o bank é um DynamicArray de clientes que estará na main, pelo
 que não é necessário aparecer aqui numa struct, sendo gerido pela main
 */
 
-static char **tokenizer(char *base, char *token, size_t n) {
-    char **r = malloc(n);
+static void tokenizer(char *base, char *token, char* str[], size_t n) {
     size_t i = 0;
-    for(char *aux = r[0]; strsep(&aux, token); r[i++] = aux);
-    return r;
+    *str = base;
+    // mudar para i <= n caso se verifique que o txt tenha ; no final
+    for(char *aux = str[0]; i < n && strsep(&aux, token); str[i++] = aux);
 }
 
 void load_bank(DynamicArray *bank) {
@@ -21,7 +21,8 @@ void load_bank(DynamicArray *bank) {
             Account *a = NULL;
             switch(*aux) {
                 case 'C': {
-                    char **arr = tokenizer(buf_ptr, ";", 3);
+                    char *arr[3] = { 0 };
+                    tokenizer(buf_ptr, ";", arr, 3);
                     Client cl = create_client(
                         atol(arr[0]),
                         arr[1],
@@ -32,7 +33,8 @@ void load_bank(DynamicArray *bank) {
                     break;
                 }
                 case 'A': {
-                    char **arr = tokenizer(buf_ptr, ";", 4);
+                    char *arr[4] = { 0 };
+                    tokenizer(buf_ptr, ";", arr, 4);
                     Account ac = create_account(
                         atol(arr[0]),
                         *arr[2] == 'D' ? DEMAND : FIXED
@@ -43,14 +45,15 @@ void load_bank(DynamicArray *bank) {
                     break;
                 }
                 case 'M': {
-                    char **arr = tokenizer(buf_ptr, ";", 2);
+                    char *arr[2] = { 0 };
+                    tokenizer(buf_ptr, ";", arr, 2);
                     Movement m = (Movement) {
                         .amount = atol(arr[1])
                     };
                     memcpy(m.date, arr[0], sizeof("YYYY-MM-DD HH:MM:SS"));
                     break;
                 }
-                // caso de ID vazios
+                // casos de ID vazios
                 case 'c': {
                     Client cl = { 0 };
                     push(bank, &cl);
@@ -66,7 +69,7 @@ void load_bank(DynamicArray *bank) {
             }
         }
     }
-    close(bank_f);
+    fclose(bank_f);
 }
 
 static int location_alphabetical(const void* ptr1, const void* ptr2) {
@@ -144,5 +147,5 @@ void unload_bank(DynamicArray *bank) {
             }
         }
     }
-    close(bank_f);
+    fclose(bank_f);
 }
