@@ -37,6 +37,10 @@ void *pop(DynamicArray *a) {
     return NULL;
 }
 
+void *top(DynamicArray *a) {
+    return a->array + ((a->length - 1) * a->stride);
+}
+
 void sort_by(DynamicArray *a, int (*compare)(void const*, void const*)) {
     // ver se pode ser assim
     qsort(a->array, a->length, a->stride, compare);
@@ -55,7 +59,21 @@ void destroy_dynamic_array(DynamicArray *a, void (*destroyer)(void*)) {
     free(a->array);
     free(a);
 }
+/*
+// this probably wasn't necessary
+void read_file_to_array(FILE *f, DynamicArray *a) {
+    for(
+        void *buf = malloc(a->stride); 
+        fread(buf, a->stride, 1, f) > 0;
+        push(a, buf)
+    );
+}
 
+bool write_array_to_file(FILE *f, DynamicArray *a) {
+    size_t written = fwrite(a->array, 1, a->length * a->stride, f);
+    return written == a->length;
+}
+*/
 // TESTING
 
 /*
