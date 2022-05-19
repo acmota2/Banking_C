@@ -14,7 +14,7 @@ void op1_list(DynamicArray *bank,int op){
             break;
     }
     do {
-        printf("\e[H\e[2J\e[3J%d\n\nq) Go Back\n> ",op);
+        printf("\e[H\e[2J\e[3JBank length:%d\n\nq) Go Back\n> ",bank->length);
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
