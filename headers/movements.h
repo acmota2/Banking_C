@@ -1,3 +1,5 @@
+#ifndef MOVEMENT_H
+#define MOVEMENT_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,3 +17,5 @@ typedef struct movement {
 
 Movement make_movement(long amount);
 MovementType type_of_movement(Movement *m);
+
+#endif

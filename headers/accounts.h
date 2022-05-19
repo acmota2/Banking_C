@@ -1,3 +1,5 @@
+#ifndef ACCOUNT_H
+#define ACCOUNT_H
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,3 +25,5 @@ bool add_movement(Account *a ,Movement *m);
 bool account_exists(Account *a);
 void erase_movement(unsigned long id , Account *a);
 void destroy_account(Account *a);
+
+#endif

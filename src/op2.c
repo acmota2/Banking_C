@@ -72,7 +72,7 @@ void op2_op8(){
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2_menu(char*name){
+void op2_menu(DynamicArray *bank,char*name){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",name);
@@ -113,10 +113,10 @@ void op2_menu(char*name){
     Nesta ação, pretende-se que o utilizador escreva o id do cliente e que devolva a informação e uma lista de ações
     Neste momento, basta escrever um nome e devolve esse nome. No futuro, irá-se verificar a existência desse ID.
 */
-void op2(){
+void op2(DynamicArray *bank){
     char name[1024];
     printf("\e[H\e[2J\e[3JID of the client:\n");
     fgets(name,1024,stdin);
     newline_to_nullt(name);
-    op2_menu(name);
+    op2_menu(bank,name);
 }

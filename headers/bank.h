@@ -1,3 +1,5 @@
+#ifndef BANK_H
+#define BANK_H
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,3 +13,5 @@ DynamicArray *clients_by_location(DynamicArray *clients);
 DynamicArray *clients_with_negative_balance(DynamicArray *clients);
 void erase_client(DynamicArray *bank, unsigned long id);
 void unload_bank(DynamicArray *bank);
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef LISTALIGADA_H
+#define LISTALIGADA_H
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,6 +18,8 @@ typedef struct lista {
 
 void append(Lista *l, void *elem);
 void prepend(Lista *l, void *elem);
-bool remove(Lista *l, void *elem, bool (*equal)(void*, void*));
+bool remove_node(Lista *l, void *elem, bool (*equal)(void*, void*));
 void destroy_lista(Lista *l, void (*destroyer)(void*));
 Nodo *goto_nodo(Lista *l, size_t i);
+
+#endif

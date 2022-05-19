@@ -13,7 +13,7 @@ static void tokenizer(char *base, char *token, char* str[], size_t n) {
 }
 
 void load_bank(DynamicArray *bank) {
-    FILE *bank_f = fopen("./bank.txt", "r");
+    FILE *bank_f = fopen("./db/bank.txt", "r");
     char buffer[1024] = { 0 };
     for(char *buf_ptr = buffer; fgets(buf_ptr, 1024, bank_f);) {
         for(char *aux = buffer; strsep(&buf_ptr, ":"); aux = buf_ptr) {
@@ -109,7 +109,7 @@ void erase_client(DynamicArray *bank, unsigned long id) {
 }
 
 void unload_bank(DynamicArray *bank) {
-    FILE *bank_f = fopen("./bank.txt", "w");
+    FILE *bank_f = fopen("./db/bank.txt", "w");
     for(size_t i = 0; i < bank->length; ++i) {
         Client *c = index_type(Client *, bank, i);
         if(!client_exists(c)) {

@@ -19,7 +19,7 @@ void prepend(Lista *l, void *elem) {
 }
 
 // verifica ao mesmo tempo se o elemento existe na lista
-bool remove(Lista *l, void *elem, bool (*equal)(void*, void*)) {
+bool remove_node(Lista *l, void *elem, bool (*equal)(void*, void*)) {
     Nodo *ptr = l->first;
     for(; ptr != NULL && equal(ptr->content, elem); ptr = ptr->next);
     if(ptr != NULL) {

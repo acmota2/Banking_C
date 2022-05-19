@@ -1,3 +1,5 @@
+#ifndef DARRAY_H
+#define DARRAY_H
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,3 +23,5 @@ void* top(DynamicArray *a);
 void sort_by(DynamicArray *a, int (*compare)(void const*, void const*));
 void destroy_dynamic_array(DynamicArray *a, void (*destroyer)(void*));
 // void erase_position(DynamicArray *a, size_t index);
+
+#endif

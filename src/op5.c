@@ -21,6 +21,6 @@ void create_user(){
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op5(){
+void op5(DynamicArray *bank){
     create_user();
 }
