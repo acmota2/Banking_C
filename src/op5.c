@@ -14,9 +14,8 @@ void create_user(DynamicArray *bank){
     fgets(address,1024,stdin);
     newline_to_nullt(address);
 
-    Client new_client = create_client((bank->length) + 1,name,address);
+    Client new_client = create_client(bank->length,name,address);
     push(bank,&new_client);
-    destroy_client(&new_client);
     
     do {
         printf("\e[H\e[2J\e[3JCreated with success\n\nq) Go Back\n> ");

@@ -9,7 +9,7 @@ static void tokenizer(char *base, char *token, char* str[], size_t n) {
     size_t i = 0;
     *str = base;
     // mudar para i <= n caso se verifique que o txt tenha ; no final
-    for(char *aux = str[0]; i < n && strsep(&aux, token); str[i++] = aux);
+    for(char *aux = str[0]; i < n && strsep(&aux, token); str[++i] = aux);
 }
 
 void load_bank(DynamicArray *bank) {
@@ -22,7 +22,7 @@ void load_bank(DynamicArray *bank) {
             switch(*aux) {
                 case 'C': {
                     char *arr[3] = { 0 };
-                    tokenizer(buf_ptr, ";", arr, 3);
+                    tokenizer(buf_ptr, ";\n", arr, 3);
                     Client cl = create_client(
                         atol(arr[0]),
                         arr[1],
@@ -34,7 +34,7 @@ void load_bank(DynamicArray *bank) {
                 }
                 case 'A': {
                     char *arr[4] = { 0 };
-                    tokenizer(buf_ptr, ";", arr, 4);
+                    tokenizer(buf_ptr, ";\n", arr, 4);
                     Account ac = create_account(
                         atol(arr[0]),
                         *arr[2] == 'D' ? DEMAND : FIXED
@@ -46,7 +46,7 @@ void load_bank(DynamicArray *bank) {
                 }
                 case 'M': {
                     char *arr[2] = { 0 };
-                    tokenizer(buf_ptr, ";", arr, 2);
+                    tokenizer(buf_ptr, ";\n", arr, 2);
                     Movement m = (Movement) {
                         .amount = atol(arr[1])
                     };

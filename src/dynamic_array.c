@@ -2,10 +2,10 @@
 
 DynamicArray* create_dynamic_array(size_t content_size, size_t n) {
     DynamicArray *r = malloc(sizeof(DynamicArray));
-    r->capacity = n;
+    r->capacity = n == 0 ? 1 : n;
     r->length = 0;
     r->stride = content_size;
-    r->array = malloc(content_size * n);
+    r->array = malloc(content_size * r->capacity);
     return r;
 }
 
