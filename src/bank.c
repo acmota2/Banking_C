@@ -15,55 +15,55 @@ static void tokenizer(char *base, char *token, char* str[], size_t n) {
 void load_bank(DynamicArray *bank) {
     FILE *bank_f = fopen("./db/bank.txt", "r");
     char buffer[1024] = { 0 };
-    for(char *buf_ptr = buffer; fgets(buf_ptr, 1024, bank_f);) {
+    for(char *buf_ptr = buffer; fgets(buffer, 1024, bank_f);) {
         for(char *aux = buffer; strsep(&buf_ptr, ":"); aux = buf_ptr) {
             Client *c = NULL;
             Account *a = NULL;
             switch(*aux) {
                 case 'C': {
-                    char *arr[3] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 3);
-                    Client cl = create_client(
-                        atol(arr[0]),
-                        arr[1],
-                        arr[2]
-                    );
-                    push(bank, &cl);
-                    c = top(bank);
+                        char *arr[3] = { 0 };
+                        tokenizer(buf_ptr, ";\n", arr, 3);
+                        Client cl = create_client(
+                            atol(arr[0]),
+                            arr[1],
+                            arr[2]
+                        );
+                        push(bank, &cl);
+                        c = top(bank);
+                    }
                     break;
-                }
                 case 'A': {
-                    char *arr[4] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 4);
-                    Account ac = create_account(
-                        atol(arr[0]),
-                        *arr[2] == 'D' ? DEMAND : FIXED
-                    );
-                    ac.balance = atol(arr[1]),
-                    push(c->accounts, &ac);
-                    a = top(c->accounts);
+                        char *arr[4] = { 0 };
+                        tokenizer(buf_ptr, ";\n", arr, 4);
+                        Account ac = create_account(
+                            atol(arr[0]),
+                            *arr[2] == 'D' ? DEMAND : FIXED
+                        );
+                        ac.balance = atol(arr[1]),
+                        push(c->accounts, &ac);
+                        a = top(c->accounts);
+                    }
                     break;
-                }
                 case 'M': {
-                    char *arr[2] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 2);
-                    Movement m = (Movement) {
-                        .amount = atol(arr[1])
-                    };
-                    memcpy(m.date, arr[0], sizeof("YYYY-MM-DD HH:MM:SS"));
+                        char *arr[2] = { 0 };
+                        tokenizer(buf_ptr, ";\n", arr, 2);
+                        Movement m = (Movement) {
+                            .amount = atol(arr[1])
+                        };
+                        memcpy(m.date, arr[0], sizeof("YYYY-MM-DD HH:MM:SS"));
+                    }
                     break;
-                }
                 // casos de ID vazios
                 case 'c': {
-                    Client cl = { 0 };
-                    push(bank, &cl);
+                        Client cl = { 0 };
+                        push(bank, &cl);
+                    }
                     break;
-                }
                 case 'a': {
-                    Account ac = { 0 };
-                    push(c->accounts, &ac);
+                        Account ac = { 0 };
+                        push(c->accounts, &ac);
+                    }
                     break;
-                }
                 default:
                     break;
             }

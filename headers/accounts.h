@@ -24,6 +24,6 @@ Account create_account(unsigned long code, Type t);
 bool add_movement(Account *a ,Movement *m);
 bool account_exists(Account *a);
 void erase_movement(unsigned long id , Account *a);
-void destroy_account(Account *a);
+void destroy_account(void *v);
 
 #endif

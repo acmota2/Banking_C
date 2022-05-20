@@ -16,17 +16,19 @@ void* access(DynamicArray *a, size_t i) {
 // as stack
 bool push(DynamicArray *a, void const* elem) {
     if(a->length == a->capacity) {
-        void *confirm = realloc(a->array, a->capacity *= 2);
+        a->capacity *= 2;
+        size_t new_capacity = a->stride * a->capacity;
+        void *confirm = realloc(a->array, new_capacity);
         if(confirm == NULL) {
             return false;
         }
     }
+    ++a->length;
     memcpy(
         a->array + (a->length * a->stride),
         elem,
         a->stride
     );
-    ++a->length;
     return true;
 }
 

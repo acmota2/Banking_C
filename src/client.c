@@ -29,7 +29,8 @@ void erase_account(Client *c, unsigned long account_id) {
     destroy_account(a);
 }
 
-void destroy_client(Client *c) {
+void destroy_client(void *v) {
+    Client *c = v;
     destroy_dynamic_array(c->accounts, destroy_account);
     free(c->name);
     c->name = NULL;

@@ -1,9 +1,11 @@
 CC=gcc
-CFLAGS=-Iheaders
+CFLAGS=-Wall -Wextra -Iheaders
 CFILES=$(wildcard src/*.c)
 HFILES=$(wildcard headers/*.h)
 
 run:
+	$(CC) $(CFLAGS) -o run $(CFILES) $(HFILES)
+debug:
 	$(CC) $(CFLAGS) -g -o run $(CFILES) $(HFILES)
 
 clean: run
