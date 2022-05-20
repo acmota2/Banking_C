@@ -1,7 +1,10 @@
 #include "movements.h"
 
-Movement make_movement(long amount) {
-    Movement r = { .amount = amount };
+Movement make_movement(long amount, MovementType t) {
+    Movement r = { 
+        .amount = amount,
+        .t = t
+    };
 
     time_t stamp;
     time(&stamp);
@@ -18,8 +21,4 @@ Movement make_movement(long amount) {
         info->tm_sec
     );
     return r;
-}
-
-MovementType type_of_movement(Movement *m) {
-   return m->amount > 0 ? CREDIT : DEBIT;
 }
