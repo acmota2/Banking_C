@@ -62,7 +62,7 @@ void run (){
 */
 int main(void){
     //run();
-    DynamicArray *bank = create_dynamic_array(sizeof(Client), 10);
+    DynamicArray *bank = create_dynamic_array(sizeof(Client), 20);
     load_bank(bank);
 
     push(bank, &(Client){
