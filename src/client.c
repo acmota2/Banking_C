@@ -23,6 +23,16 @@ void add_account(Client *c, Account *a) {
     push(c->accounts, a);
 }
 
+void edit_client_name(Client *c, char *new_name) {
+    free(c->name);
+    c->name = strdup(new_name);
+}
+
+void edit_client_address(Client *c, char *new_address) {
+    free(c->address);
+    c->address = strdup(new_address);
+}
+
 void erase_account(Client *c, unsigned long account_id) {
     Account *a = index_type(Account *, c->accounts, account_id);
     c->global_balance -= a->balance;
