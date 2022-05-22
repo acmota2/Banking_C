@@ -15,11 +15,11 @@ nomes = ['Abel', 'Abilio', 'Ana', 'Anacleto', 'Andre', 'Antonio', 'Beatriz', 'Be
 apelidos = ['Albuquerque', 'Antunes', 'Araujo', 'Barbosa', 'Berardo', 'Bettencourt', 'Camoes', 'Carvalho', 'Cerqueira', 'Coelho', 'Costa', 'Dias', 'Fernandes', 'Ferreira', 'Henriques', 'Lino', 'Lopes', 'Machado', 'Martins', 'Mota', 'Nunes', 'Osorio', 'Oliveira', 'Pereira', 'Pina', 'Pinto', 'Pinho', 'Rebelo', 'Reis', 'Rodrigues', 'Sa', 'Saramago', 'Sousa', 'Vasques', 'Vaz', 'Veloso']
 
 def generate_file():
-    x = input('Escolher uma seed aleatória:')
+    x = input('Escolher uma seed aleatória: ')
     random.seed(a=int(x), version=2)
 
     x = input('Nome para um ficheiro txt: ')
-    with open('./db/' + x + '.txt', 'w+') as out_f:
+    with open('../db/' + x + '.txt', 'w+') as out_f:
         lines = []
         clientes = rint(850, 1150)
 

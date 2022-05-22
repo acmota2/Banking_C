@@ -13,7 +13,7 @@ static void tokenizer(char *base, char *token, char* str[], size_t n) {
 }
 
 void load_bank(DynamicArray *bank) {
-    FILE *bank_f = fopen("./db/bank2.txt", "r");
+    FILE *bank_f = fopen("./db/bank.txt", "r");
     char buffer[1024] = { 0 };
     Client *c = NULL;
     Account *a = NULL;

@@ -9,10 +9,36 @@ void op2_op1(Client *c){
     } while(*opt!='Q' && *opt!='q');
 }
 
+void print_list_accounts(Client * c){
+    size_t length = c->accounts->length;
+    if(length == 0){
+        printf("The client doesn't have any accounts!\n");
+    } else {
+        for(size_t i=0;i<length;i++){
+            Account * a = access(c->accounts,i);
+            if(!account_exists(a)){
+                printf("[Account erased]\n");
+            } else {
+                size_t mlength = a->movements->length;
+                printf("[ID]:%zu [Number of movements]:%zu\n\nMovements:\n",a->code,mlength);
+
+                for(size_t j=0;j<mlength;j++){
+                    Movement* m = access(a->movements,j); 
+                    printf("Date:%s Type of Movement:%s Amount:%lu \n",m->date,m->t == CREDIT ? 'CREDIT' : 'DEBIT',m->amount);
+                }
+            }
+            printf("------------\n");
+        }
+    }
+}
+
+
 void op2_op2(Client *c){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JOP2\n\nq) Go Back\n> ");
+        printf("\e[H\e[2J\e[3J");
+        print_list_accounts(c);
+        printf("q) Go Back\n> ");
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -111,10 +137,8 @@ void op2_menu(DynamicArray *bank,Client * c){
 
 /*
     Nesta ação, pretende-se que o utilizador escreva o id do cliente e que devolva a informação e uma lista de ações
-    Neste momento, basta escrever um nome e devolve esse nome. No futuro, irá-se verificar a existência desse ID.
+    Neste momento, basta escrever um nome e devolve esse nome.
 */
-
-
 
 void op2(DynamicArray *bank){
     char id[1024], opt[1024];
@@ -127,7 +151,7 @@ void op2(DynamicArray *bank){
             op2_menu(bank,c);
         } else {
             do {
-                printf("\e[H\e[2J\e[3JClient erased\nq) Go Back\n> ");
+                printf("\e[H\e[2J\e[3JClient doesn't exist anymore\nq) Go Back\n> ");
                 fgets(opt,1024,stdin);
                 newline_to_nullt(opt);
             } while(*opt!='Q' && *opt!='q');
