@@ -1,4 +1,6 @@
+Client:0;Andre Mota;Rua Bla
+Client:1;Carlos Barbosa;Rua do Caralho
 client erased
-Client:1;Andre Mota;Rua Bla
-Client:2;Andre Mota;Rua Bla
 Client:3;Andre Mota;Rua Bla
+Client:4;Andre Mota;Rua Bla
+Client:5;Andre Mota;Rua Bla

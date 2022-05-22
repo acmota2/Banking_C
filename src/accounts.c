@@ -29,6 +29,8 @@ void erase_movement(unsigned long id , Account *a) {
 */
 void destroy_account(void *v) {
     Account *a = v;
-    destroy_dynamic_array(a->movements, NULL);
-    a->movements = NULL; // sanity checking
+    if(account_exists(a)) {
+        destroy_dynamic_array(a->movements, NULL);
+        a->movements = NULL; // sanity checking
+    }
 }

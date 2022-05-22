@@ -61,30 +61,6 @@ void run (){
     Apenas executa a função "run"
 */
 int main(void){
-    //run();
-    DynamicArray *bank = create_dynamic_array(sizeof(Client), 20);
-    load_bank(bank);
-
-    push(bank, &(Client){
-        .num_code = bank->length,
-        .accounts = create_dynamic_array(sizeof(Account), 0),
-        .address = strdup("Rua Bla"),
-        .name = strdup("Andre Mota")
-    });
-    push(bank, &(Client){
-        .num_code = bank->length,
-        .accounts = create_dynamic_array(sizeof(Account), 0),
-        .address = strdup("Rua Bla"),
-        .name = strdup("Andre Mota")
-    });
-    push(bank, &(Client){
-        .num_code = bank->length,
-        .accounts = create_dynamic_array(sizeof(Account), 0),
-        .address = strdup("Rua Bla"),
-        .name = strdup("Andre Mota")
-    });
-    
-    unload_bank(bank);
-    destroy_dynamic_array(bank, destroy_client);
+    run();
     return 0;
 }
