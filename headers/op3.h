@@ -6,6 +6,6 @@
 #include "utils_tui.h"
 #include "bank.h"
 
-void op3(DynamicArray *bank);
+void op3();
 
 #endif

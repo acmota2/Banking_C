@@ -1,6 +1,6 @@
 #include "op3.h"
 
-void op3(DynamicArray *bank){
+void op3(){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3JUnder construction\n\nq) Go Back\n> ");
