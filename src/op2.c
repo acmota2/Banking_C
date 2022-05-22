@@ -3,7 +3,7 @@
 void op2_op1(Client *c){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JInformation\n------------\nID: %zu\nName: %s\nAddress: %s\nNumber of accounts: %zu\n\nq) Go Back\n> ",c->num_code,c->name,c->address,c->accounts->length);
+        printf("\e[H\e[2J\e[3JInformation\n------------\nID: %zu\nName: %s\nAddress: %s\nBalance:%g\nNumber of accounts: %zu\n\nq) Go Back\n> ",c->num_code,c->name,c->address,c->global_balance / 100.,c->accounts->length);
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
@@ -20,11 +20,14 @@ void print_list_accounts(Client * c){
                 printf("[Account erased]\n");
             } else {
                 size_t mlength = a->movements->length;
-                printf("[ID]:%zu [Number of movements]:%zu\n\nMovements:\n",a->code,mlength);
+                char *ta = a->t == FIXED ? "FIXED" : "DEMAND";
 
+                printf("[ID]:%zu [Type of account]:%s [Number of movements]:%zu\n\nMovements:\n",a->code,ta,mlength);
+                char *type;
                 for(size_t j=0;j<mlength;j++){
                     Movement* m = access(a->movements,j); 
-                    printf("Date:%s Type of Movement:%s Amount:%lu \n",m->date,m->t == CREDIT ? 'CREDIT' : 'DEBIT',m->amount);
+                    type = m->t == CREDIT ? "CREDIT" : "DEBIT";
+                    printf("[Date]:%s [Type of Movement]:%s [Amount]:%g \n",m->date,type,m->amount / 100.);
                 }
             }
             printf("------------\n");
@@ -44,13 +47,48 @@ void op2_op2(Client *c){
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2_op3(){
-    char opt[1024];
-    do {
-        printf("\e[H\e[2J\e[3JOP3\n\nq) Go Back\n> ");
-        fgets(opt,1024,stdin);
-        newline_to_nullt(opt);
-    } while(*opt!='Q' && *opt!='q');
+
+
+
+void op2_op3(Client *c){
+    char id[1024],opt[1024];
+    printf("\e[H\e[2J\e[3JID of the account:\n");
+    fgets(id,1024,stdin);
+    newline_to_nullt(id);
+
+    size_t index = atol(id);
+    if(index < c->accounts->length){
+        Account * a = access(c->accounts,index);
+        if(account_exists(a)){
+            do {
+                printf("\e[H\e[2J\e[3J");
+                size_t mlength = a->movements->length;
+                char *ta = a->t == FIXED ? "FIXED" : "DEMAND";
+                printf("[ID]:%zu [Type of account]:%s [Number of movements]:%zu\n\nMovements:\n",a->code,ta,mlength);
+                char *type;
+                for(size_t j=0;j<mlength;j++){
+                    Movement* m = access(a->movements,j); 
+                    type = m->t == CREDIT ? "CREDIT" : "DEBIT";
+                    printf("[Date]:%s [Type of Movement]:%s [Amount]:%g \n",m->date,type,m->amount / 100.);
+                }
+                printf("\nq) Go Back\n> ");
+                fgets(opt,1024,stdin);
+                newline_to_nullt(opt);
+            } while(*opt!='Q' && *opt!='q');
+        } else {
+            do {
+                printf("\e[H\e[2J\e[3JAccount doesn't exist anymore\nq) Go Back\n> ");
+                fgets(opt,1024,stdin);
+                newline_to_nullt(opt);
+            } while(*opt!='Q' && *opt!='q');
+        }
+    } else {
+        do {
+            printf("\e[H\e[2J\e[3JInvalid ID\nq) Go Back\n> ");
+            fgets(opt,1024,stdin);
+            newline_to_nullt(opt);
+        } while(*opt!='Q' && *opt!='q');
+    }
 }
 
 void op2_op4(){
@@ -112,7 +150,7 @@ void op2_menu(DynamicArray *bank,Client * c){
                 op2_op2(c);
                 break;
             case '3':
-                op2_op3();
+                op2_op3(c);
                 break;
             case '4':
                 op2_op4();
@@ -145,7 +183,7 @@ void op2(DynamicArray *bank){
     printf("\e[H\e[2J\e[3JID of the client:\n");
     fgets(id,1024,stdin);
     newline_to_nullt(id);
-    Client * c = getClient(bank,id);
+    Client * c = get_client(bank,id);
     if(c !=NULL){
         if(client_exists(c)){
             op2_menu(bank,c);

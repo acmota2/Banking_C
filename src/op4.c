@@ -5,7 +5,7 @@ void op4(DynamicArray *bank){
     printf("\e[H\e[2J\e[3JID of the client:\n");
     fgets(id,1024,stdin);
     newline_to_nullt(id);
-    Client * c = getClient(bank,id);
+    Client * c = get_client(bank,id);
     if(c !=NULL){
         if(client_exists(c)){
             erase_client(bank,c->num_code);

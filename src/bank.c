@@ -106,7 +106,7 @@ DynamicArray *clients_with_negative_balance(DynamicArray *clients) {
     return balance;
 }
 
-Client* getClient(DynamicArray *bank,char * id){
+Client* get_client(DynamicArray *bank,char * id){
     size_t index = atol(id);
     if(index < bank->length){
         return access(bank,index); 
