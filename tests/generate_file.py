@@ -19,7 +19,7 @@ def generate_file():
     random.seed(a=int(x), version=2)
 
     x = input('Nome para um ficheiro txt: ')
-    with open('../db/' + x + '.txt', 'w+') as out_f:
+    with open('./db/' + x + '.txt', 'w+') as out_f:
         lines = []
         clientes = rint(850, 1150)
 

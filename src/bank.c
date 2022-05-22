@@ -54,6 +54,7 @@ void load_bank(DynamicArray *bank) {
                         .t = *arr[2] == 'C' ? CREDIT : DEBIT
                     };
                     memcpy(m.date, arr[0], sizeof("YYYY-MM-DD HH:MM:SS"));
+                    push(a->movements, &m);
                 }
                 break;
             // casos de ID vazios
