@@ -114,15 +114,6 @@ void op2_menu(DynamicArray *bank,Client * c){
     Neste momento, basta escrever um nome e devolve esse nome. No futuro, irá-se verificar a existência desse ID.
 */
 
-Client* getClient(DynamicArray *bank,char * id){
-    size_t index = atol(id);
-    if(index < bank->length){
-        return access(bank,index); 
-    } else {
-        return NULL;
-    }
-}
-
 
 
 void op2(DynamicArray *bank){

@@ -102,6 +102,15 @@ DynamicArray *clients_with_negative_balance(DynamicArray *clients) {
     return balance;
 }
 
+Client* getClient(DynamicArray *bank,char * id){
+    size_t index = atol(id);
+    if(index < bank->length){
+        return access(bank,index); 
+    } else {
+        return NULL;
+    }
+}
+
 void erase_client(DynamicArray *bank, unsigned long id) {
     Client *c = index_type(Client *, bank, id);
     destroy_client(c);
