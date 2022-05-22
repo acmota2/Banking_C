@@ -1,15 +1,15 @@
 #include "op2.h"
 
-void op2_op1(){
+void op2_op1(Client *c){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3JInformation\n------------\n\nName: Any Name\nAddress: 22 Fake Street\n\nq) Go Back\n> ");
+        printf("\e[H\e[2J\e[3JInformation\n------------\nID: %zu\nName: %s\nAddress: %s\nNumber of accounts: %zu\n\nq) Go Back\n> ",c->num_code,c->name,c->address,c->accounts->length);
         fgets(opt,1024,stdin);
         newline_to_nullt(opt);
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2_op2(){
+void op2_op2(Client *c){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3JOP2\n\nq) Go Back\n> ");
@@ -72,18 +72,18 @@ void op2_op8(){
     } while(*opt!='Q' && *opt!='q');
 }
 
-void op2_menu(DynamicArray *bank,char*name){
+void op2_menu(DynamicArray *bank,Client * c){
     char opt[1024];
     do {
-        printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",name);
+        printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",c->name);
         printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Check global position\n6) Edit a specific account\n7) Remove a specific account\n8) Create a new account\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         switch (*opt){
             case '1':
-                op2_op1();
+                op2_op1(c);
                 break;
             case '2':
-                op2_op2();
+                op2_op2(c);
                 break;
             case '3':
                 op2_op3();
@@ -113,10 +113,39 @@ void op2_menu(DynamicArray *bank,char*name){
     Nesta ação, pretende-se que o utilizador escreva o id do cliente e que devolva a informação e uma lista de ações
     Neste momento, basta escrever um nome e devolve esse nome. No futuro, irá-se verificar a existência desse ID.
 */
+
+Client* getClient(DynamicArray *bank,char * id){
+    size_t index = atol(id);
+    if(index < bank->length){
+        return access(bank,index); 
+    } else {
+        return NULL;
+    }
+}
+
+
+
 void op2(DynamicArray *bank){
-    char name[1024];
+    char id[1024], opt[1024];
     printf("\e[H\e[2J\e[3JID of the client:\n");
-    fgets(name,1024,stdin);
-    newline_to_nullt(name);
-    op2_menu(bank,name);
+    fgets(id,1024,stdin);
+    newline_to_nullt(id);
+    Client * c = getClient(bank,id);
+    if(c !=NULL){
+        if(client_exists(c)){
+            op2_menu(bank,c);
+        } else {
+            do {
+                printf("\e[H\e[2J\e[3JClient erased\nq) Go Back\n> ");
+                fgets(opt,1024,stdin);
+                newline_to_nullt(opt);
+            } while(*opt!='Q' && *opt!='q');
+        }
+    } else {
+        do {
+            printf("\e[H\e[2J\e[3JInvalid ID\nq) Go Back\n> ");
+            fgets(opt,1024,stdin);
+            newline_to_nullt(opt);
+        } while(*opt!='Q' && *opt!='q');
+    }
 }

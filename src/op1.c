@@ -4,7 +4,7 @@ void print_list(DynamicArray *bank){
     for(size_t i = 0; i < bank->length; ++i) {
         Client *c = index_type(Client *, bank, i);
         if(!client_exists(c)) {
-            printf("client erased\n");
+            printf("[Client erased]\n");
         } else {
                 printf(
                     "[Id]:%zu [Name]:%s [Address]:%s\n",
