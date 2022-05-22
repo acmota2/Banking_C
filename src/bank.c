@@ -106,6 +106,19 @@ DynamicArray *clients_with_negative_balance(DynamicArray *clients) {
     return balance;
 }
 
+bool calculate_global_balance(DynamicArray *bank, size_t id) {
+    Client *c = index_type(Client *, bank, id);
+    if(client_exists(c)) {
+        c->global_balance = 0;
+        for(size_t i = 0; i < c->accounts->length; ++i) {
+            Account *current = index_type(Account *, c->accounts, i);
+            c->global_balance += current->balance;
+        }
+        return true;
+    }
+    return false;
+}
+
 Client* get_client(DynamicArray *bank,char * id){
     size_t index = atol(id);
     if(index < bank->length){
