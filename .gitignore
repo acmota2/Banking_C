@@ -1,5 +1,8 @@
 # mine
 .vscode
+db/*.txt
+*.out
+run
 
 # Prerequisites
 *.d
