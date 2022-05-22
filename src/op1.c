@@ -7,9 +7,10 @@ void print_list(DynamicArray *bank){
             printf("[Client erased]\n");
         } else {
                 printf(
-                    "[Id]:%zu [Name]:%s [Balance]:%g\n",
+                    "[Id]:%zu [Name]:%s [Address]:%s [Balance]:%g\n",
                     c->num_code,
                     c->name,
+                    c->address,
                     c->global_balance / 100.
                 );
         }

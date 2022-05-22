@@ -24,7 +24,7 @@ void print_list_accounts(Client * c){
                 size_t mlength = a->movements->length;
                 char *ta = a->t == FIXED ? "FIXED" : "DEMAND";
 
-                printf("[ID]:%zu [Type of account]:%s [Number of movements]:%zu\n\nMovements:\n",a->code,ta,mlength);
+                printf("[ID]:%zu [Type of account]:%s [Balance]:%g [Number of movements]:%zu\n\nMovements:\n",a->code,ta,a->balance / 100.,mlength);
                 char *type;
                 for(size_t j=0;j<mlength;j++){
                     Movement* m = access(a->movements,j); 
@@ -66,7 +66,7 @@ void op2_op3(Client *c){
                 printf("\e[H\e[2J\e[3J");
                 size_t mlength = a->movements->length;
                 char *ta = a->t == FIXED ? "FIXED" : "DEMAND";
-                printf("[ID]:%zu [Type of account]:%s [Number of movements]:%zu\n\nMovements:\n",a->code,ta,mlength);
+                printf("[ID]:%zu [Type of account]:%s [Balance]:%g [Number of movements]:%zu\n\nMovements:\n",a->code,ta,a->balance / 100.,mlength);
                 char *type;
                 for(size_t j=0;j<mlength;j++){
                     Movement* m = access(a->movements,j); 
