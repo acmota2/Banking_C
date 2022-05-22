@@ -22,7 +22,7 @@ void load_bank(DynamicArray *bank) {
         switch(*aux) {
             case 'C': {
                     char *arr[3] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 3);
+                    tokenizer(buf_ptr, ";\r\n", arr, 3);
                     Client cl = create_client(
                         atol(arr[0]),
                         arr[1],

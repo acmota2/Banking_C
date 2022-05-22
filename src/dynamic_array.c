@@ -14,21 +14,13 @@ void* access(DynamicArray *a, size_t i) {
 }
 
 // as stack
-bool push(DynamicArray *a, void const* elem) {
+void push(DynamicArray *a, void *elem) {
     if(a->length == a->capacity) {
         a->capacity *= 2;
-        void *confirm = realloc(a->array, a->stride * a->capacity);
-        if(confirm == NULL) {
-            return false;
-        }
+        a->array = reallocarray(a->array, a->capacity, a->stride);
     }
-    memcpy(
-        a->array + (a->length * a->stride),
-        elem,
-        a->stride
-    );
+    memmove(a->array + (a->length * a->stride), elem, a->stride);
     ++a->length;
-    return true;
 }
 
 void *pop(DynamicArray *a) {

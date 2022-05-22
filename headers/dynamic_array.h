@@ -17,7 +17,7 @@ typedef struct dynamic_array {
 
 DynamicArray* create_dynamic_array(size_t content_size, size_t n);
 void* access(DynamicArray *a, size_t i);
-bool push(DynamicArray *a, void const* elem);
+void push(DynamicArray *a, void *elem);
 void* pop(DynamicArray *a);
 void* top(DynamicArray *a);
 void sort_by(DynamicArray *a, int (*compare)(void const*, void const*));

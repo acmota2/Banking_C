@@ -17,7 +17,7 @@ typedef struct client {
 
 Client create_client(unsigned long num_code, char *name, char *address);
 bool client_exists(Client *c);
-bool add_account(Client *c, Account *a);
+void add_account(Client *c, Account *a);
 void erase_account(Client *c, size_t account_id);
 void destroy_client(void *v);
 

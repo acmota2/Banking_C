@@ -45,7 +45,6 @@ void main_menu(DynamicArray *bank) {
     printf("[EXITED]\n");
 }
 
-
 /*
     Executa a função "main_menu", mas tenciona-se inicializar e dar free à estrutura de dados nesta função 
 */

@@ -18,9 +18,9 @@ bool client_exists(Client *c) {
     return c->name != NULL;
 }
 
-bool add_account(Client *c, Account *a) {
+void add_account(Client *c, Account *a) {
     c->global_balance += a->balance;
-    return push(c->accounts, a);
+    push(c->accounts, a);
 }
 
 void erase_account(Client *c, unsigned long account_id) {

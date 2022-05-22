@@ -17,9 +17,9 @@ bool account_exists(Account *a) {
     return a->movements != NULL;
 }
 
-bool add_movement(Account *a ,Movement *m) {
+void add_movement(Account *a ,Movement *m) {
     a->balance += m->amount;
-    return push(a->movements, m);
+    push(a->movements, m);
 }
 /*
 se necessário
