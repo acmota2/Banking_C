@@ -12,7 +12,7 @@ Movement make_movement(long amount, MovementType t) {
     // acrescentar a data do movimento
     sprintf(
         r.date,
-        "%d-%02d-%02d %02d:%02d:%02d",
+        "%hd-%02hd-%02hd %02hd:%02hd:%02hd",
         info->tm_year + 1900,
         info->tm_mon + 1,
         info->tm_mday,
