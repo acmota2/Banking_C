@@ -30,7 +30,7 @@ void main_menu(DynamicArray *bank) {
                 op2(bank);
                 break;
             case '3':
-                op3();
+                op3(bank);
                 break;
             case '4':
                 op4(bank);

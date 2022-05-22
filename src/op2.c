@@ -148,17 +148,7 @@ void op2_op4(Client * c){
     }
 }
 
-
-void op2_op5(){
-    char opt[1024];
-    do {
-        printf("\e[H\e[2J\e[3JUnder construction\n\nq) Go Back\n> ");
-        fgets(opt,1024,stdin);
-        newline_to_nullt(opt);
-    } while(*opt!='Q' && *opt!='q');
-}
-
-void op2_op6(Client * c){
+void op2_op5(Client * c){
     char id[1024], opt[1024];
     printf("\e[H\e[2J\e[3JID of the account:\n");
     fgets(id,1024,stdin);
@@ -195,7 +185,7 @@ void op2_op6(Client * c){
     }
 }
 
-void op2_op7(Client *c){
+void op2_op6(Client *c){
     char type[1024];
 
     do {
@@ -221,7 +211,7 @@ void op2_menu(DynamicArray *bank,Client * c){
     char opt[1024];
     do {
         printf("\e[H\e[2J\e[3J%s's account\n\nChoose an option:\n",c->name);
-        printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Edit a specific account\n6) Remove a specific account\n7) Create a new account\nq) Go Back\n> ");
+        printf("1) Show all information\n2) List all accounts\n3) Check a specific account\n4) Register money movement\n5) Remove a specific account\n6) Create a new account\nq) Go Back\n> ");
         fgets(opt,1024,stdin);
         switch (*opt){
             case '1':
@@ -237,13 +227,10 @@ void op2_menu(DynamicArray *bank,Client * c){
                 op2_op4(c);
                 break;
             case '5':
-                op2_op5();
+                op2_op5(c);
                 break;
             case '6':
                 op2_op6(c);
-                break;
-            case '7':
-                op2_op7(c);
                 break;
             default:
                 break;
