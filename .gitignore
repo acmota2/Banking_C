@@ -3,6 +3,7 @@
 db/*.txt
 *.out
 run
+vgcore
 
 # Prerequisites
 *.d

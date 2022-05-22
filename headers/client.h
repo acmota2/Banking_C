@@ -9,10 +9,10 @@
 
 typedef struct client {
     unsigned long num_code;
-    long global_balance;
-    DynamicArray *accounts;
     char *name;
     char *address;
+    long global_balance;
+    DynamicArray *accounts;
 } Client;
 
 Client create_client(unsigned long num_code, char *name, char *address);

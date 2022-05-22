@@ -13,28 +13,30 @@ static void tokenizer(char *base, char *token, char* str[], size_t n) {
 }
 
 void load_bank(DynamicArray *bank) {
-    FILE *bank_f = fopen("./db/bank.txt", "r");
+    FILE *bank_f = fopen("./db/bank2.txt", "r");
     char buffer[1024] = { 0 };
+    Client *c = NULL;
+    Account *a = NULL;
     for(char *buf_ptr = buffer; fgets(buffer, 1024, bank_f); buf_ptr = buffer) {
         char *aux = strsep(&buf_ptr, ":");
-        Client *c = NULL;
-        Account *a = NULL;
         switch(*aux) {
             case 'C': {
-                    char *arr[3] = { 0 };
-                    tokenizer(buf_ptr, ";\r\n", arr, 3);
-                    Client cl = create_client(
-                        atol(arr[0]),
-                        arr[1],
-                        arr[2]
-                    );
+                    char *arr[4] = { 0 };
+                    tokenizer(buf_ptr, ";\r\n", arr, 4);
+                    Client cl = (Client) {
+                        .num_code = atol(arr[0]),
+                        .global_balance = atol(arr[1]),
+                        .name = strdup(arr[2]),
+                        .address = strdup(arr[3]),
+                        .accounts = create_dynamic_array(sizeof(Account), 0)
+                    };
                     push(bank, &cl);
                     c = top(bank);
                 }
                 break;
             case 'A': {
                     char *arr[4] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 4);
+                    tokenizer(buf_ptr, ";\r\n", arr, 4);
                     Account ac = create_account(
                         atol(arr[0]),
                         *arr[2] == 'D' ? DEMAND : FIXED
@@ -45,10 +47,11 @@ void load_bank(DynamicArray *bank) {
                 }
                 break;
             case 'M': {
-                    char *arr[2] = { 0 };
-                    tokenizer(buf_ptr, ";\n", arr, 2);
+                    char *arr[3] = { 0 };
+                    tokenizer(buf_ptr, ";\r\n", arr, 3);
                     Movement m = (Movement) {
-                        .amount = atol(arr[1])
+                        .amount = atol(arr[1]),
+                        .t = *arr[2] == 'C' ? CREDIT : DEBIT
                     };
                     memcpy(m.date, arr[0], sizeof("YYYY-MM-DD HH:MM:SS"));
                 }
@@ -125,8 +128,9 @@ void unload_bank(DynamicArray *bank) {
         } else {
                 fprintf(
                     bank_f,
-                    "Client:%zu;%s;%s\n",
+                    "Client:%zu;%ld;%s;%s\n",
                     c->num_code,
+                    c->global_balance,
                     c->name,
                     c->address
                 );
@@ -146,9 +150,10 @@ void unload_bank(DynamicArray *bank) {
                         Movement *m = index_type(Movement *, a->movements, k);
                         fprintf(
                             bank_f,
-                            "Movement:%s;%ld\n",
+                            "Movement:%s;%ld;%s\n",
                             m->date,
-                            m->amount
+                            m->amount,
+                            m->t == DEBIT ? "Debit" : "Credit"
                         );
                     }
                 }

@@ -13,8 +13,8 @@ typedef enum movement_type {
 
 typedef struct movement {
     char date[sizeof("YYYY-MM-DD HH:MM:SS")];
-    MovementType t;
     long amount;
+    MovementType t;
 } Movement;
 
 Movement make_movement(long amount, MovementType t);
